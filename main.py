@@ -18,27 +18,23 @@
 
 # 引入相關副程式
 import resizeImage
-# import B
-# import C
-# import D
-# import E
+import os
+from util import processJson, processImageWith123Bbox
+
+
+def main():
+    # ------------------- 相關路徑設定 -------------------
+
+    # 設定 json 路徑
+    file_path = '../dataset/annotations/annotations/train_grounding.json'
+
+    # ------------------- 呼叫函式 -------------------
+
+    # 讀取 json 檔，並篩選出只有一個 category，每個 category
+    # 有多個 bbox 的 image 和其記錄，再依照 category
+    # 各存成一個 json 檔，將這些 json 檔存入新建的 ./category 資料夾
+    processJson(file_path)
 
 
 if __name__ == '__main__':
-    # 呼叫 A 副程式
-    print('Start Coding the Real Thing')
-    print('I love Coding')
-    resizeImage.resize()
-    # 呼叫 B 副程式
-    # cool_func()
-    # 呼叫 C 副程式
-    # cool_func()
-    # 呼叫 D 副程式
-    # cool_func()
-    # 呼叫 E 副程式
-    # cool_func()
-
-
-
-
-
+    main()
