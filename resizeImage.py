@@ -16,29 +16,45 @@
 '''
 
 
-# 引入相關副程式
-# import A
-# import B
-# import C
-# import D
-# import E
+# 引入相關模組
+import cv2
+import os
 
-def cropImage()
+
+def resizeAllImages(inputDirectory, outputDirectory):
+    # 確保輸出目錄存在
+    if not os.path.exists(outputDirectory):
+        os.makedirs(outputDirectory)
+
+    # 遍歷輸入目錄中的所有文件
+    for filename in os.listdir(inputDirectory):
+        # 構建完整的文件路徑
+        inputPath = os.path.join(inputDirectory, filename)
+
+        # 檢查文件是否為圖像（為了簡單起見，這裡只檢查檔案副檔名）
+        if inputPath.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.gif')):
+            # 讀取圖像
+            img = cv2.imread(inputPath)
+
+            # 將圖像縮放到 224x224
+            img = cv2.resize(img, (224, 224), interpolation=cv2.INTER_AREA)
+
+            # 構建輸出文件路徑
+            outputPath = os.path.join(outputDirectory, filename)
+
+            # 保存縮放後的圖像
+            cv2.imwrite(outputPath, img)
+
+            print(f"已縮放並保存：{outputPath}")
 
 
 if __name__ == '__main__':
-    # 呼叫 A 副程式
-    print('Start Coding the Real Thing')
-    print('I love Coding')
-    # 呼叫 B 副程式
-    # cool_func()
-    # 呼叫 C 副程式
-    # cool_func()
-    # 呼叫 D 副程式
-    # cool_func()
-    # 呼叫 E 副程式
-    # cool_func()
+    # 指定輸入和輸出目錄
+    inputDirectory = '../dataset/Images/origin/train'
+    outputDirectory = '../dataset/Images/resize/train'
 
+    # 調用函數以縮放並保存所有圖像
+    resizeAllImages(inputDirectory, outputDirectory)
 
 
 

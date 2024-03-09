@@ -17,7 +17,7 @@
 
 
 # 引入相關副程式
-# import A
+import resizeImage
 # import B
 # import C
 # import D
@@ -28,6 +28,7 @@ if __name__ == '__main__':
     # 呼叫 A 副程式
     print('Start Coding the Real Thing')
     print('I love Coding')
+    resizeImage.resize()
     # 呼叫 B 副程式
     # cool_func()
     # 呼叫 C 副程式
