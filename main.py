@@ -16,25 +16,35 @@
 '''
 
 
-# 引入相關副程式
+# 引入副程式
 import resizeImage
-import os
-from util import processJson, processImageWith123Bbox
+import util
 
 
+# ========================== 相關路徑設定 ==========================
+
+# 指定 resize image 檔案輸入和輸出的路徑
+inputImageFilePath = '../dataset/Images/origin/train'
+outputImageFilePath = '../dataset/Images/resize/train'
+# 指定 JSON 檔案輸入和輸出的路徑
+inputJsonFilePath = '../dataset/annotations/annotations/train_grounding.json'
+outputJsonFilePath = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
+
+# ==================================================================
+
+
+# 主程式
 def main():
-    # ------------------- 相關路徑設定 -------------------
+    # ------------------- 呼叫副程式的函式 -------------------
 
-    # 設定 json 路徑
-    file_path = '../dataset/annotations/annotations/train_grounding.json'
-
-    # ------------------- 呼叫函式 -------------------
-
-    # 讀取 json 檔，並篩選出只有一個 category，每個 category
-    # 有多個 bbox 的 image 和其記錄，再依照 category
-    # 各存成一個 json 檔，將這些 json 檔存入新建的 ./category 資料夾
-    processJson(file_path)
+    # 呼叫 resizeAllImages() 函式以縮放並保存所有影像
+    resizeImage.resizeAllImages(inputImageFilePath, outputImageFilePath)
+    # 呼叫 processJson() 函式，處理 JSON 檔案並保存結果
+    util.processJson(inputJsonFilePath, outputJsonFilePath)
 
 
 if __name__ == '__main__':
     main()
+
+
+

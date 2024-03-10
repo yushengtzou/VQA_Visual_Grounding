@@ -32,18 +32,18 @@ def resizeAllImages(inputDirectory, outputDirectory):
         # 構建完整的文件路徑
         inputPath = os.path.join(inputDirectory, filename)
 
-        # 檢查文件是否為圖像（為了簡單起見，這裡只檢查檔案副檔名）
+        # 檢查文件是否為影像（為了簡單起見，這裡只檢查檔案副檔名）
         if inputPath.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.gif')):
-            # 讀取圖像
+            # 讀取影像
             img = cv2.imread(inputPath)
 
-            # 將圖像縮放到 224x224
+            # 將影像縮放到 224x224
             img = cv2.resize(img, (224, 224), interpolation=cv2.INTER_AREA)
 
             # 構建輸出文件路徑
             outputPath = os.path.join(outputDirectory, filename)
 
-            # 保存縮放後的圖像
+            # 保存縮放後的影像
             cv2.imwrite(outputPath, img)
 
             print(f"已縮放並保存：{outputPath}")
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     inputDirectory = '../dataset/Images/origin/train'
     outputDirectory = '../dataset/Images/resize/train'
 
-    # 調用函數以縮放並保存所有圖像
+    # 呼叫函式以縮放並保存所有影像
     resizeAllImages(inputDirectory, outputDirectory)
 
 
