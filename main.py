@@ -19,10 +19,11 @@
 # 引入副程式
 import resizeImage
 import util
+import extractFeatures
 import model 
 
 
-# ========================== 相關路徑設定 ==========================
+# ============================ 路徑設定 ============================
 
 # 指定 resize image 檔案輸入和輸出的路徑(resize image 用)
 inputImageFilePath = '../dataset/Images/origin/train'
@@ -50,10 +51,10 @@ def main():
     # util.processJson(inputJsonFilePath, outputJsonFilePath)
 
     # 呼叫 encodeImageQuestionAnswers() 函式，以抽取特徵
-    features = model.encodeImageQuestionAnswers(inputJsonFilePathForFeature, resizedImageFilePath)
+    features = extractFeatures.encodeImageQuestionAnswers(inputJsonFilePathForFeature, resizedImageFilePath)
 
     # 呼叫 clusteringFeatures() 函式，來視覺化特徵空間
-    model.clusteringFeatures(features)
+    extractFeatures.clusteringFeatures(features)
 
 
 if __name__ == '__main__':
