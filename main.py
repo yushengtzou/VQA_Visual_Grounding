@@ -44,8 +44,11 @@ def main():
     # resizeImage.resizeAllImages(inputImageFilePath, outputImageFilePath)
     # 呼叫 processJson() 函式，處理 JSON 檔案並保存結果
     # util.processJson(inputJsonFilePath, outputJsonFilePath)
-    # 呼叫 encodeImageQuestionAnswers() 函式，抽取特徵
-    model.encodeImageQuestionAnswers(inputJsonFilePath, outputImageFilePath)
+    # 呼叫 encodeImageQuestionAnswers() 函式，以抽取特徵
+    features = model.encodeImageQuestionAnswers(inputJsonFilePath, outputImageFilePath)
+    # 呼叫 clusteringFeatures() 函式，來視覺化特徵空間
+    model.clusteringFeatures(features)
+
 
 if __name__ == '__main__':
     main()
