@@ -27,11 +27,12 @@ import model
 # 指定 resize image 檔案輸入和輸出的路徑(resize image 用)
 inputImageFilePath = '../dataset/Images/origin/train'
 outputImageFilePath = '../dataset/Images/resize/train'
-# 指定 JSON 檔案輸入和輸出的路徑(處理 json檔案 用)
+# 指定 JSON 檔案輸入和輸出的路徑(處理 json 檔案用)
 inputJsonFilePath = '../dataset/annotations/annotations/train_grounding.json'
 outputJsonFilePath = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
 # 指定 JSON 檔案輸入和輸出的路徑(抽取 image-question-answer 特徵用)
-inputJsonFilePath = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
+inputJsonFilePathForFeature = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
+resizedImageFilePath = '../dataset/Images/resize/train'
 
 # ==================================================================
 
@@ -44,10 +45,11 @@ def main():
     # resizeImage.resizeAllImages(inputImageFilePath, outputImageFilePath)
     # 呼叫 processJson() 函式，處理 JSON 檔案並保存結果
     # util.processJson(inputJsonFilePath, outputJsonFilePath)
+    # util.processJson(inputJsonFilePath, outputJsonFilePath)
     # 呼叫 encodeImageQuestionAnswers() 函式，以抽取特徵
-    features = model.encodeImageQuestionAnswers(inputJsonFilePath, outputImageFilePath)
+    features = model.encodeImageQuestionAnswers(inputJsonFilePathForFeature, resizedImageFilePath)
     # 呼叫 clusteringFeatures() 函式，來視覺化特徵空間
-    model.clusteringFeatures(features)
+    # model.clusteringFeatures(features)
 
 
 if __name__ == '__main__':

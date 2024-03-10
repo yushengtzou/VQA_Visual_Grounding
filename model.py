@@ -91,6 +91,7 @@ def clusteringFeatures(features):
     np.save('features.npy', features_array)
     np.save('identifiers.npy', identifiers)
 
+
 if __name__ == '__main__':
     # 指定輸入和輸出目錄
     inputDirectory = '../dataset/Images/origin/train'
