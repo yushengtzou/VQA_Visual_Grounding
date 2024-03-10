@@ -38,9 +38,6 @@ def encoder(image, question, answers):
     question = clip.tokenize(question).to(device)
     answers = clip.tokenize(answers).to(device)
 
-    # image = preprocess(Image.open("CLIP.png")).unsqueeze(0).to(device)
-    # answers = clip.tokenize(["a diagram", "a dog", "a cat"]).to(device)
-
     # 所有計算出的 tensor 的 requires_grad 都自動設置為 False
     with torch.no_grad():
         image_features = model.encode_image(image)
@@ -62,7 +59,7 @@ def encodeImageQuestionAnswers(inputJsonPath, inputImageDirectoryPath):
     with open(inputJsonPath, 'r') as file:
         data = json.load(file)
 
-    features = []
+    featuresList = []
 
     # 遍歷 data 中的每一個 dict 
     for imageFileName, info in data.items():
@@ -77,10 +74,10 @@ def encodeImageQuestionAnswers(inputJsonPath, inputImageDirectoryPath):
         answers = info["answers"]
 
         # 呼叫編碼器函式編碼
-        features.append(encoder(img, question, answers))
+        featuresList.append(encoder(img, question, answers))
         print(f"已抽取特徵：{imageFileName}")
 
-    return features
+    return featuresList
 
 
 # 視覺化特徵空間的函式 
@@ -92,10 +89,10 @@ def clusteringFeatures(features):
     np.save('identifiers.npy', identifiers)
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # 指定輸入和輸出目錄
-    inputDirectory = '../dataset/Images/origin/train'
-    outputDirectory = '../dataset/Images/resize/train'
+    # inputDirectory = '../dataset/Images/origin/train'
+    # outputDirectory = '../dataset/Images/resize/train'
 
     # 呼叫函式以縮放並保存所有影像
     # encoder(inputDirectory, outputDirectory)
