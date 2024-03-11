@@ -55,17 +55,17 @@ def encoder(image, question, answers):
 
 
 # 編碼影像-問題-答案的函式 
-def encodeImageQuestionAnswers(inputJsonPath, inputImageDirectoryPath):
-    with open(inputJsonPath, 'r') as file:
+def encode_image_question_answers(input_json_path, input_image_directory_path):
+    with open(input_json_path, 'r') as file:
         data = json.load(file)
 
-    featuresList = []
+    features_list = []
 
     # 遍歷 data 中的每一個 dict 
-    for imageFileName, info in data.items():
-        imagePath = os.path.join(inputImageDirectoryPath, imageFileName)
+    for image_file_name, info in data.items():
+        image_path = os.path.join(input_image_directory_path, image_file_name)
         # 讀取影像
-        img = cv2.imread(imagePath)
+        img = cv2.imread(image_path)
         # Convert the image from BGR (OpenCV) to RGB 
         # and then to a PIL Image
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -74,19 +74,19 @@ def encodeImageQuestionAnswers(inputJsonPath, inputImageDirectoryPath):
         answers = info["answers"]
 
         # 呼叫編碼器函式編碼
-        featuresList.append(encoder(img, question, answers))
-        print(f"已抽取特徵：{imageFileName}")
+        features_list.append(encoder(img, question, answers))
+        print(f"已抽取特徵：{image_file_name}")
 
-    return featuresList
+    return features_list
 
 
 # 處理影像-問題-答案特徵的函式 
-def processExtractedFeatures(featuresList):
+def process_extracted_features(features_list):
     # 遍歷 featuresList 中的每一個 List
-    for features in featuresList:
-        imageFeatures = features[0]
-        questionFeatures = features[1]
-        answersFeatures = features[2]
+    for features in features_list:
+        image_features = features[0]
+        question_features = features[1]
+        answers_features = features[2]
         # Concatenate questionFeatures and answersFeatures to a vector 
 
 

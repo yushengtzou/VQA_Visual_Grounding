@@ -1,6 +1,6 @@
 # Visual Grounding for VQA Tasks 
 
-Environment Set up
+## Environment Set up
 
 conda create —name vizwiz
 

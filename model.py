@@ -3,7 +3,7 @@
  *
  *       Filename:  model.py
  *
- *    Description:  Use CLIP model API
+ *    Description:  
  *
  *        Version:  1.0
  *        Created:  2024/03/11
@@ -22,7 +22,7 @@ import torch
 import torch.nn as nn
 
 
-# ConvBlock 類別
+# ConvBlock 類別的實作
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding, groups=1, bias=False):
         super().__init__()
@@ -36,7 +36,7 @@ class ConvBlock(nn.Module):
         return self.bn(self.c(x))
 
 
-# SE Block 類別
+# SE Block 類別的實作
 class SEBlock(nn.Module):
     def __init__(self, C, r=16):
         super().__init__()
@@ -65,7 +65,7 @@ class SEBlock(nn.Module):
 
 
 # Bottleneck ResNeXt ResidualBlock 結合 
-# Squeeze-and-Excitation (SE) 模塊類別
+# Squeeze-and-Excitation (SE) 模塊類別的實作
 class ResidualBlock(nn.Module):
     def __init__(self, in_channels, out_channels, stride, first=False, cardinality=32):
     super().__init__()
@@ -99,7 +99,7 @@ class ResidualBlock(nn.Module):
         return h
 
 
-# 定義一個簡單的網絡類別，繼承自 nn.Module
+# 定義一個簡單的網絡類別的實作，繼承自 nn.Module
 class SimpleNet(nn.Module):
     def __init__(self):
         super(SimpleNet, self).__init__()

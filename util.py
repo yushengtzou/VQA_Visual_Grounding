@@ -22,14 +22,14 @@ import json
 
 
 # 處理 json 檔資料的函式 
-def processJson(inputFilePath, outputFilePath):
-    with open(inputFilePath, 'r') as file:
+def process_json(input_file_path, output_file_path):
+    with open(input_file_path, 'r') as file:
         data = json.load(file)
 
     # 遍歷 data 中的每一個 dict 
-    for imageFileName, info in data.items():
-        originHeight = info["height"]
-        originWidth = info["width"]
+    for image_file_name, info in data.items():
+        origin_height = info["height"]
+        origin_width = info["width"]
         info["height"] = 224
         info["width"] = 224
 
@@ -37,10 +37,10 @@ def processJson(inputFilePath, outputFilePath):
             point["x"] = point["x"] * 224 / originWidth
             point["y"] = point["y"] * 224 / originHeight
 
-        print(f"已處理並保存：{imageFileName}")
+        print(f"已處理並保存：{image_file_name}")
 
     # 將處理後的數據寫回到一個新的 JSON 檔案中
-    with open(outputFilePath, 'w') as outfile:
+    with open(output_file_path, 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
 

@@ -26,16 +26,16 @@ import model
 # ============================ 路徑設定 ============================
 
 # 指定 resize image 檔案輸入和輸出的路徑(resize image 用)
-inputImageFilePath = '../dataset/Images/origin/train'
-outputImageFilePath = '../dataset/Images/resize/train'
+input_image_file_path = '../dataset/Images/origin/train'
+output_image_file_path = '../dataset/Images/resize/train'
 
 # 指定 JSON 檔案輸入和輸出的路徑(處理 json 檔案用)
-inputJsonFilePath = '../dataset/annotations/annotations/train_grounding.json'
-outputJsonFilePath = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
+input_json_file_path = '../dataset/annotations/annotations/train_grounding.json'
+output_json_file_path = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
 
 # 指定 JSON 檔案輸入和輸出的路徑(抽取 image-question-answer 特徵用)
-inputJsonFilePathForFeature = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
-resizedImageFilePath = '../dataset/Images/resize/train'
+input_json_file_path_for_feature = '../dataset/annotations/annotationsProcessed/train_grounding_processed.json'
+resized_image_file_path = '../dataset/Images/resize/train'
 
 # ==================================================================
 
@@ -44,17 +44,17 @@ resizedImageFilePath = '../dataset/Images/resize/train'
 def main():
     # ------------------- 呼叫副程式的函式 -------------------
 
-    # 呼叫 resizeAllImages() 函式以縮放並保存所有影像
-    # resizeImage.resizeAllImages(inputImageFilePath, outputImageFilePath)
+    # 呼叫 resize_all_images() 函式以縮放並保存所有影像
+    # resizeImage.resize_all_images(input_image_file_path, output_image_file_path)
 
-    # 呼叫 processJson() 函式，處理 JSON 檔案並保存結果
-    # util.processJson(inputJsonFilePath, outputJsonFilePath)
+    # 呼叫 process_json() 函式，處理 JSON 檔案並保存結果
+    # util.process_json(input_json_file_path, output_json_file_path)
 
-    # 呼叫 encodeImageQuestionAnswers() 函式，以抽取特徵
-    features = extractFeatures.encodeImageQuestionAnswers(inputJsonFilePathForFeature, resizedImageFilePath)
+    # 呼叫 encode_image_question_answers() 函式，以抽取特徵
+    features = extractFeatures.encode_image_question_answers(input_json_file_path_for_feature, resized_image_file_path)
 
-    # 呼叫 clusteringFeatures() 函式，來視覺化特徵空間
-    extractFeatures.clusteringFeatures(features)
+    # 呼叫 clustering_features() 函式，來視覺化特徵空間
+    extractFeatures.clustering_features(features)
 
 
 if __name__ == '__main__':
