@@ -17,7 +17,6 @@
 
 
 # 引入副程式
-import resizeImage
 import util
 import extractFeatures
 import model 
@@ -45,7 +44,7 @@ def main():
     # ------------------- 呼叫副程式的函式 -------------------
 
     # 呼叫 resize_all_images() 函式以縮放並保存所有影像
-    # resizeImage.resize_all_images(input_image_file_path, output_image_file_path)
+    # util.resize_all_images(input_image_file_path, output_image_file_path)
 
     # 呼叫 process_json() 函式，處理 JSON 檔案並保存結果
     # util.process_json(input_json_file_path, output_json_file_path)
