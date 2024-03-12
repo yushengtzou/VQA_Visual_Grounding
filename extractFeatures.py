@@ -59,7 +59,10 @@ def encode_image_question_answers(input_json_path, input_image_directory_path):
     with open(input_json_path, 'r') as file:
         data = json.load(file)
 
-    features_list = []
+    total_features_list = []
+    image_features_list = []
+    question_features_list = []
+    answer_features_list = []
 
     # 遍歷 data 中的每一個 dict 
     for image_file_name, info in data.items():
@@ -74,21 +77,38 @@ def encode_image_question_answers(input_json_path, input_image_directory_path):
         answers = info["answers"]
 
         # 呼叫編碼器函式編碼
-        features_list.append(encoder(img, question, answers))
+        features = encoder(img, question, answers)
+
+        image_features_list.append(features[0])
+        question_features_list.append(features[1])
+        answer_features_list.append(features[2])
+
         print(f"已抽取特徵：{image_file_name}")
 
-    return features_list
+    total_features_list.append(image_features_list)
+    total_features_list.append(question_features_list)
+    total_features_list.append(answer_features_list)
+
+    return total_features_list
 
 
 # 處理影像-問題-答案特徵的函式 
-def process_extracted_features(features_list):
-    # 遍歷 featuresList 中的每一個 List
-    for features in features_list:
-        image_features = features[0]
-        question_features = features[1]
-        answers_features = features[2]
-        # Concatenate questionFeatures and answersFeatures to a vector 
+def process_extracted_features(total_features_list):
 
+    image_features_list = total_features_list[0]
+    question_features_list = total_features_list[1]
+    answer_features_list = total_features_list[2]
+
+    # 遍歷 featuresList 中的每一個 List
+
+        # Ensure correct dimension for concatenation
+        qa_features = torch.cat((question_features, answers_features), dim=1)  
+
+        # Apply the Sentence Attention Block
+        context_vector = sentence_attention_block(image_features, qa_features)
+
+        # Now, you have a context vector that emphasizes the relevant parts of the image
+        # You can use this vector for further processing, depending on your project's requirements
 
 
 
